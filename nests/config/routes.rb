@@ -2,7 +2,12 @@ Rails.application.routes.draw do
 
   root 'welcome#dashboard'
 
-  get "users/:id" => "users#show", as: :user
+  # get "users/:id" => "users#show", as: :user
+
+  resources :users do
+    resources :posts
+  end
+  
 
   post "/signin/verify" => "sessions#create", as: :auth
   get "signin" => "sessions#new", as: :sign_in
